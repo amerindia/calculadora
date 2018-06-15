@@ -1,0 +1,8 @@
+#root {
+  width: 960px;
+  margin: 20px auto 0 auto;
+}
+
+.frequencyResults img {
+  max-width: 200px;
+}
