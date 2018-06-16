@@ -10,6 +10,10 @@ import Tab from '@material-ui/core/Tab';
 import TextField from '@material-ui/core/TextField';
 import Freq1 from './frequencies/One.js';
 import Freq2 from './frequencies/Two.js';
+import Freq3 from './frequencies/Three.js';
+import Freq4 from './frequencies/Four.js';
+import Freq5 from './frequencies/Five.js';
+import Freq6 from './frequencies/Six.js';
 import './App.css';
 
 const styles = theme => ({
@@ -19,18 +23,29 @@ const styles = theme => ({
   freqTitle: {
     textAlign: 'center',
     paddingTop: '5px'
+  },
+  tab: {
+    minWidth: 132.6
   }
 });
 
 class App extends Component {
-  state = {
-    radius: ''
+  constructor(props) {
+      super(props);
+      this.state = {
+        radius: '',
+        selectedFreq: 0
+      };
   }
 
   handleChange = name => e => {
     this.setState({
       [name]: parseFloat(e.target.value)
     });
+  }
+
+  setFreq = (e, value) => {
+    this.setState({selectedFreq: value});
   }
 
   render() {
@@ -59,22 +74,28 @@ class App extends Component {
           </Grid>
           <Grid item xs={10}>
             <AppBar position='static'>
-              <Tabs value={0}>
-                <Tab label="1" component={Link} to={'/frequencia/1'} />
-                <Tab label="2" component={Link} to={'/frequencia/2'} />
-                <Tab label="3" component={Link} to={'/frequencia/3'} />
-                <Tab label="4" component={Link} to={'/frequencia/5'} />
-                <Tab label="5" component={Link} to={'/frequencia/5'} />
-                <Tab label="6" component={Link} to={'/frequencia/6'} />
+              <Tabs value={this.state.selectedFreq} onChange={this.setFreq}>
+                {[1, 2, 3, 4, 5, 6].map(freq => (
+                  <Tab
+                    label={freq}
+                    component={Link}
+                    to={`/frequencia/${freq}`}
+                    className={classes.tab}
+                    key={freq}
+                  />
+                ))}
               </Tabs>
             </AppBar>
           </Grid>
         </Grid>
 
-
         <div className="frequencyResults">
           <Route path='/frequencia/1' component={(props) => <Freq1 {...props} radius={this.state.radius} />} />
           <Route path='/frequencia/2' component={(props) => <Freq2 {...props} radius={this.state.radius} />} />
+          <Route path='/frequencia/3' component={(props) => <Freq3 {...props} radius={this.state.radius} />} />
+          <Route path='/frequencia/4' component={(props) => <Freq4 {...props} radius={this.state.radius} />} />
+          <Route path='/frequencia/5' component={(props) => <Freq5 {...props} radius={this.state.radius} />} />
+          <Route path='/frequencia/6' component={(props) => <Freq6 {...props} radius={this.state.radius} />} />
         </div>
       </React.Fragment>
     );
