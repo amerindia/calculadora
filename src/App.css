@@ -3,6 +3,15 @@
   margin: 20px auto 0 auto;
 }
 
+.logo img {
+  height: 200px;
+}
+
+h1,
+.logo {
+  text-align: center;
+}
+
 .frequencyResults img {
   max-width: 200px;
 }

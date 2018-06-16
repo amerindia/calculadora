@@ -15,6 +15,7 @@ import Freq4 from './frequencies/Four.js';
 import Freq5 from './frequencies/Five.js';
 import Freq6 from './frequencies/Six.js';
 import './App.css';
+import logo from './Logo.png';
 
 const styles = theme => ({
   radius: {
@@ -54,6 +55,9 @@ class App extends Component {
     return (
       <React.Fragment>
         <CssBaseline />
+
+        <div className='logo'><img src={logo} alt="calculadora de Geodésica - Ameríndia" /></div>
+        <h1>Calculadora de Geodésica</h1>
 
         <Grid container spacing={24}>
           <Grid item xs={12} className={classes.radius}>
