@@ -57,7 +57,7 @@ class App extends Component {
         <CssBaseline />
 
         <div className='logo'><img src={logo} alt="calculadora de Geodésica - Ameríndia" /></div>
-        <h1>Calculadora de Geodésica</h1>
+        <h1>Calculadora de Geodésica atraves do:</h1>
 
         <Grid container spacing={24}>
           <Grid item xs={12} className={classes.radius}>
@@ -71,36 +71,38 @@ class App extends Component {
               }}
             />
           </Grid>
-          <Grid item xs={2}>
-            <Typography variant="headline" className={classes.freqTitle}>
-              Frequencia:
-            </Typography>
-          </Grid>
-          <Grid item xs={10}>
-            <AppBar position='static'>
-              <Tabs value={this.state.selectedFreq} onChange={this.setFreq}>
-                {[1, 2, 3, 4, 5, 6].map(freq => (
-                  <Tab
-                    label={freq}
-                    component={Link}
-                    to={`/frequencia/${freq}`}
-                    className={classes.tab}
-                    key={freq}
-                  />
-                ))}
-              </Tabs>
-            </AppBar>
-          </Grid>
+          {this.state.radius && <React.Fragment>
+            <Grid item xs={2}>
+              <Typography variant="headline" className={classes.freqTitle}>
+                Frequencia:
+              </Typography>
+            </Grid>
+            <Grid item xs={10}>
+              <AppBar position='static'>
+                <Tabs value={this.state.selectedFreq} onChange={this.setFreq}>
+                  {[1, 2, 3, 4, 5, 6].map(freq => (
+                    <Tab
+                      label={freq}
+                      component={Link}
+                      to={`/frequencia/${freq}`}
+                      className={classes.tab}
+                      key={freq}
+                    />
+                  ))}
+                </Tabs>
+              </AppBar>
+            </Grid>
+          </React.Fragment>}
         </Grid>
 
-        <div className="frequencyResults">
+        {this.state.radius && <div className="frequencyResults">
           <Route path='/frequencia/1' component={(props) => <Freq1 {...props} radius={this.state.radius} />} />
           <Route path='/frequencia/2' component={(props) => <Freq2 {...props} radius={this.state.radius} />} />
           <Route path='/frequencia/3' component={(props) => <Freq3 {...props} radius={this.state.radius} />} />
           <Route path='/frequencia/4' component={(props) => <Freq4 {...props} radius={this.state.radius} />} />
           <Route path='/frequencia/5' component={(props) => <Freq5 {...props} radius={this.state.radius} />} />
           <Route path='/frequencia/6' component={(props) => <Freq6 {...props} radius={this.state.radius} />} />
-        </div>
+        </div>}
       </React.Fragment>
     );
   }
