@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -35,7 +34,7 @@ class App extends Component {
       super(props);
       this.state = {
         radius: '',
-        selectedFreq: 0
+        selectedFreq: ''
       };
   }
 
@@ -50,7 +49,7 @@ class App extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, ...props } = this.props;
 
     return (
       <React.Fragment>
@@ -71,7 +70,7 @@ class App extends Component {
               }}
             />
           </Grid>
-          {this.state.radius && <React.Fragment>
+          {this.state.radius ? <React.Fragment>
             <Grid item xs={2}>
               <Typography variant="headline" className={classes.freqTitle}>
                 Frequencia:
@@ -82,9 +81,8 @@ class App extends Component {
                 <Tabs value={this.state.selectedFreq} onChange={this.setFreq}>
                   {[1, 2, 3, 4, 5, 6].map(freq => (
                     <Tab
+                      value={freq}
                       label={freq}
-                      component={Link}
-                      to={`/frequencia/${freq}`}
                       className={classes.tab}
                       key={freq}
                     />
@@ -92,17 +90,17 @@ class App extends Component {
                 </Tabs>
               </AppBar>
             </Grid>
-          </React.Fragment>}
+          </React.Fragment> : null}
         </Grid>
 
-        {this.state.radius && <div className="frequencyResults">
-          <Route path='/frequencia/1' component={(props) => <Freq1 {...props} radius={this.state.radius} />} />
-          <Route path='/frequencia/2' component={(props) => <Freq2 {...props} radius={this.state.radius} />} />
-          <Route path='/frequencia/3' component={(props) => <Freq3 {...props} radius={this.state.radius} />} />
-          <Route path='/frequencia/4' component={(props) => <Freq4 {...props} radius={this.state.radius} />} />
-          <Route path='/frequencia/5' component={(props) => <Freq5 {...props} radius={this.state.radius} />} />
-          <Route path='/frequencia/6' component={(props) => <Freq6 {...props} radius={this.state.radius} />} />
-        </div>}
+        {this.state.radius >= 0 ? <div className="frequencyResults">
+          {this.state.selectedFreq === 1 && <Freq1 {...props} radius={this.state.radius} />}
+          {this.state.selectedFreq === 2 && <Freq2 {...props} radius={this.state.radius} />}
+          {this.state.selectedFreq === 3 && <Freq3 {...props} radius={this.state.radius} />}
+          {this.state.selectedFreq === 4 && <Freq4 {...props} radius={this.state.radius} />}
+          {this.state.selectedFreq === 5 && <Freq5 {...props} radius={this.state.radius} />}
+          {this.state.selectedFreq === 6 && <Freq6 {...props} radius={this.state.radius} />}
+        </div> : null}
       </React.Fragment>
     );
   }
