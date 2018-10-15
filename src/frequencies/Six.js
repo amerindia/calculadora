@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import Frequency from './Frequency.js';
+import imageMap from './Six.Map.png';
 
 class Freq6 extends Component {
   render = () => {
     const { radius } = this.props;
 
     return <Frequency
-      imageMapAlt="Mapa aereo da frequencia 6"
+      imageMap={imageMap}
+      imageMapAlt="Mapa aéreo da frequência 6"
       struts={[
         ["A", radius * 0.16256722, 30, 60],
         ["B", radius * 0.19047686, 30, 60],

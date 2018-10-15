@@ -7,20 +7,42 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Button from '@material-ui/core/Button';
+import ButtonBase from '@material-ui/core/ButtonBase';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import numeral from 'numeral';
 
 const styles = theme => ({
   waysConn: {
     textAlign: 'right'
+  },
+  imageMap: {
+    maxWidth: '100%'
+  },
+  imageMapButton: {
+    display: 'inline-block'
   }
 });
 
 class Frequency extends Component {
+	state = {open: false};
+
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
   render() {
     const { classes, imageMap, imageMapAlt, struts, connectors } = this.props;
     const columns = struts[0].length;
 
-    return <Grid container spacing={24}>
+    return <React.Fragment>
       <Grid item xs={8}>
         <Paper>
           <Table>
@@ -70,9 +92,29 @@ class Frequency extends Component {
         </Paper>
       </Grid>
       <Grid item xs={4}>
-        {imageMap && <img src={imageMap} alt={imageMapAlt} />}
+        {imageMap && <ButtonBase classes={{root: classes.imageMapButton}} onClick={this.handleClickOpen}>
+          <img src={imageMap} alt={imageMapAlt} className={classes.imageMap} />
+          <div>Clique aqui para visualizar o mapa de montagem</div>
+        </ButtonBase>}
+        {imageMap && <Dialog
+          open={this.state.open}
+          onClose={this.handleClose}
+					scroll='body'
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{imageMapAlt}</DialogTitle>
+          <DialogContent>
+						<img src={imageMap} alt={imageMapAlt} className={classes.imageMap} />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary" autoFocus>
+              Fechar
+            </Button>
+          </DialogActions>
+        </Dialog>}
       </Grid>
-    </Grid>;
+    </React.Fragment>;
   }
 }
 

@@ -8,7 +8,7 @@ class Freq1 extends Component {
 
     return <Frequency
       imageMap={imageMap}
-      imageMapAlt="Mapa aereo da frequencia 1"
+      imageMapAlt="Mapa aéreo da frequência 1"
       struts={[
         ["A", radius * 1.05146, 25, 30]
       ]}
