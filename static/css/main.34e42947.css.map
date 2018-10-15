@@ -1,0 +1,1 @@
+{"version":3,"sources":["App.css"],"names":[],"mappings":"AAAA,MACE,YACA,kBAAyB,CAG3B,UACE,YAAc,CAGhB,SAEE,iBAAmB","file":"static/css/main.34e42947.css","sourcesContent":["#root {\n  width: 960px;\n  margin: 20px auto 0 auto;\n}\n\n.logo img {\n  height: 200px;\n}\n\nh1,\n.logo {\n  text-align: center;\n}\n\n\n\n// WEBPACK FOOTER //\n// ./src/App.css"],"sourceRoot":""}
