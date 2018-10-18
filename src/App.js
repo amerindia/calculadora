@@ -68,7 +68,7 @@ class App extends Component {
         <CssBaseline />
 
         <div className='logo'><img src={logo} alt="calculadora de Geodésica - Ameríndia" /></div>
-        <h1>Calculadora de Geodésica atraves do:</h1>
+        <h1>Calculadora de Geodésica através do:</h1>
 
         <Grid container spacing={24}>
           <Grid item xs={12} className={classes.radius}>
